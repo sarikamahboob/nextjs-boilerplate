@@ -1,10 +1,12 @@
 import { Metadata } from "next";
 
-type Props = {
-  params: {
-    productId: string;
-  }
-}
+// type Props = {
+//   params: {
+//     productId: string;
+//   }
+// }
+
+type Props = Promise<{ productId: string }>
 
 // export const generateMetadata = ({params}: Props): Metadata => {
 //   return {
@@ -13,10 +15,11 @@ type Props = {
 // }
 
 // asynchronous 
-export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+export const generateMetadata = async ({params}: {params : Props}): Promise<Metadata> => {
+  const { productId } = await params;
   const title = await new Promise((resolve) => {
     setTimeout(() => {
-      resolve(`Shoe ${params?.productId}`)
+      resolve(`Shoe ${productId}`)
     }, 1000 )
   })
   return {
@@ -25,9 +28,10 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
 }
 
 
-const ProductDetails = ({params}: Props) => {
+const ProductDetails = async ({params}: {params : Props}): Promise<JSX.Element> => {
+  const { productId } = await params;
   return (
-    <div>Product Details of {params.productId}</div>
+    <div>Product Details of {productId}</div>
   )
 }
 
