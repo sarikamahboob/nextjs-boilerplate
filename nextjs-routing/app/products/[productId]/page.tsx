@@ -1,12 +1,14 @@
+
+export const dynamic = 'false'
 import { Metadata } from "next";
 
-// type Props = {
-//   params: {
-//     productId: string;
-//   }
-// }
+type Props = {
+  params: {
+    productId: string;
+  }
+}
 
-type Props = Promise<{ productId: string }>
+// type Props = Promise<{ productId: string }>
 
 // export const generateMetadata = ({params}: Props): Metadata => {
 //   return {
@@ -14,8 +16,14 @@ type Props = Promise<{ productId: string }>
 //   }
 // }
 
+export const generateStaticParams = async (): Promise<{ productId: string }[]> => {
+  // Replace this with your actual logic to fetch product IDs
+  const productIds = ["1", "2", "3"]; // Example product IDs
+  return productIds.map((id) => ({ productId: id }));
+};
+
 // asynchronous 
-export const generateMetadata = async ({params}: {params : Props}): Promise<Metadata> => {
+export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
   const { productId } = await params;
   const title = await new Promise((resolve) => {
     setTimeout(() => {
