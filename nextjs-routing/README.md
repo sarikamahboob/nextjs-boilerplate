@@ -223,9 +223,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - if servers side code gets bundled into the client side JavaScript, it could lead to a bloated bundle size, expose secret Keys, database queries and sensitive business logic.
   - it is crucial to separate server only code from client side code to protect the applications security and integrity.
   - to prevent unintended clients side usage of server code we can use a package called server only to provide a build time error, if developers accidentally import one of these modules into a client component.
-  
-  
-  
+
+  - Context providers
+    - Context providers are typically rendered near the root of an application to share global application state and logic.
+    - For exmple - the application theme
+    - Howver, since React context is not supproted in Server Components, attempting  to create a context at the root of an  application will result in an error.
+    - To address his, we can create a context and render its provider inside a separate Client Component
    
 
 
