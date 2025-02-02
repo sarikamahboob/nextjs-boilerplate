@@ -192,9 +192,44 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
      - in Next Js the dynamic functions are cookies headers and search params which acts more like a prop available for every page. 
      - using any of these will opt the whole route into Dynamic rendering at request time 
     - Dynamic rendering is a strategy where the HTML is generated at request time 
-    - next js automatically switches to Dynamic 	rendering when it comes across a dynamic function in the component such as cookies headers or the search parms object 
+    - next js automatically switches to Dynamic 	rendering when it comes across a dynamic function in the component such as cookies headers or the search params object 
     - this form of rendering is great for when we need to render HTML personalized to a user such as a social media feed 
     - as a developer you do not need to choose between static and dynamic rendering nextjs will automatically choose the best rendering strategy for each route based on the features and apis used 
+
+- Streaming
+    - Streaming is a strategy that allows for Progressive UI rendering from the server 
+    - work is divided into chunks and streamed to the client as soon as it's ready. 
+    - This enables users to see parts of the page immediately before the entire content has finished rendering. 
+    - Streaming significantly improves both the initial page loading performance and the rendering of UI elements that rely on slower data fetches which would otherwise block the rendering of the entire route.
+    - Streaming is integrated into the next js app router by default 
+
+- Server Components
+  - Fetching Data
+  - Directly accessing backend resources
+  - Protecting sensitive information ( like access tokens and API keys) on he server
+  - Keeping large dependencies on the server side, which helps reducing client side JavaScript
+- Client Components
+  - Adding interactivity
+  - Handling event listeners (onClick(), onMouseOver(), etc.)
+  - Managing state and lifecycle effects ( using hook like useState, useEffect, etc.)
+  - Using browser exclusive APIs ( geolocation, local storage, etc.)
+  - Using custom hooks
+  - Using react class components
+
+- Server only code
+  - Contain code is intended to execute only on the server 
+  - You might have modules or functions that use multiple libraries, use environment variables interact directly with the database or process confidential information 
+  - since JavaScript modules can be shared between both server and client components, it's possible for code that's meant only for the server to unintentionally end up in the client 
+  - if servers side code gets bundled into the client side JavaScript, it could lead to a bloated bundle size, expose secret Keys, database queries and sensitive business logic.
+  - it is crucial to separate server only code from client side code to protect the applications security and integrity.
+  - to prevent unintended clients side usage of server code we can use a package called server only to provide a build time error, if developers accidentally import one of these modules into a client component.
+  
+  
+  
+   
+
+
+
 
 
 
