@@ -1,5 +1,5 @@
 // export const fetchCatch = "default-catch"
-
+const revalidate = 10;
 import {cookies} from "next/headers"
 
 import React from 'react'
@@ -15,14 +15,19 @@ const ProductsPage = async () => {
   // const response = await fetch("http://localhost:3001/products", {
   //   cache: "no-store",
   // })
-  const response = await fetch("http://localhost:3001/products")
+  // const response = await fetch("http://localhost:3001/products")
+  const response = await fetch("http://localhost:3001/products", {
+    next: {
+      revalidate: 10,
+    }
+  })
   const products: Product[] = await response.json()
-  const cookiesStore = cookies()
-  const theme = cookiesStore.get("theme")
-  console.log({cookiesStore})
-  const detailsResponse = await fetch("http://localhost:3001/products/1")
-  const details = await detailsResponse.json()
-  console.log({details})
+  // const cookiesStore = cookies()
+  // const theme = cookiesStore.get("theme")
+  // console.log({cookiesStore})
+  // const detailsResponse = await fetch("http://localhost:3001/products/1")
+  // const details = await detailsResponse.json()
+  // console.log({details})
  
   return (
     <div>

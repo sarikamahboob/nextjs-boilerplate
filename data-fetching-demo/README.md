@@ -7,3 +7,9 @@ why it is required ??
 - by default, next js will cache fetch() request that occur before any dynamic functions ( cookies(), headers(), searchParams(), etc) are used and will not cache requests found after dynamic functions
 - request memorization is a technique that deduplicates  requests for the same data within a single render pass
 - this approach allows for re-use of data in a React component tree, prevents redundant network calls and enhances performance
+- memorization is a React feature, not specially a next js feature
+- memorization only applies to the GET method in fetch requests
+- rendering => memorization => data cache => data source
+- Revalidation
+  - it is the process of purging the Data cache and re-fetching the latest data
+  - time based revalidation - next js automatically revalidate data after a certain amount of time has passed
